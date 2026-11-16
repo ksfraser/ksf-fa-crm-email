@@ -5,8 +5,7 @@ declare(strict_types=1);
 namespace Ksfraser\FrontAccounting\CRM\Email\App;
 
 use ksfraser\FrontAccounting\Common\App\AbstractAppShell;
-use ksfraser\FrontAccounting\Common\Menu\FAModuleMenu;
-use Ksfraser\FrontAccounting\CRM\Email\Controller\EmailTabController;
+use ksfraser\FrontAccounting\Common\App\TabRegistration;
 
 class EmailAppShell extends AbstractAppShell
 {
@@ -14,17 +13,16 @@ class EmailAppShell extends AbstractAppShell
     {
         parent::__construct('email', 'index.php', 'view', 'email_accounts');
 
-        $this->add_module(_("Email"));
-
-        $menu = new FAModuleMenu(
-            'modules/ksf_FA_CRM_Email/index.php',
-            'view',
-            ''
-        );
-
-        $menu->addItem('email_accounts', _("Email Accounts"), MENU_INQUIRY)
-             ->registerWithApp($this, 'SA_EMAIL_VIEW');
-
-        $this->add_extensions();
+        $this->registerTab(new TabRegistration(
+            'email_accounts',
+            'Email Accounts',
+            'SA_EMAIL_VIEW',
+            null,
+            10,
+            0,
+            null,
+            null,
+            array()
+        ));
     }
 }

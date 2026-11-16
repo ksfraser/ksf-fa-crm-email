@@ -1,17 +1,11 @@
 <?php
-declare(strict_types=1);
 
-use Ksfraser\FrontAccounting\CRM\Email\App\EmailFrontController;
-use Ksfraser\FrontAccounting\CRM\Email\App\EmailAppShell;
+require_once __DIR__ . '/bootstrap.php';
 
 $path_to_root = '../..';
 
-if (file_exists(__DIR__ . '/bootstrap.php')) {
-    require_once __DIR__ . '/bootstrap.php';
-}
-
-$frontController = new EmailFrontController(
-    new EmailAppShell(),
+$frontController = new \Ksfraser\FrontAccounting\CRM\Email\App\EmailFrontController(
+    new \Ksfraser\FrontAccounting\CRM\Email\App\EmailAppShell(),
     'SA_EMAIL_VIEW',
     $path_to_root
 );
