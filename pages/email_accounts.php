@@ -8,7 +8,7 @@ $path_to_root = '../..';
 require_once($path_to_root . '/includes/session.inc');
 
 if (!function_exists('page_security')) {
-    define('page_security', 'SA_EMAIL_VIEW');
+    define('page_security', 'SA_CRM_EMAIL_VIEW');
 }
 
 $controller = new EmailTabController(null, array());

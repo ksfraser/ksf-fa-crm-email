@@ -8,10 +8,10 @@ require_once __DIR__ . '/includes/common.inc';
 require_once __DIR__ . '/includes/events.inc';
 use ksfraser\RelatedTo\DTO\RelatedRecordDto;
 define('SS_ksf_FA_CRM_Email', 196 << 8);
-if (!defined('SA_EMAIL_VIEW')) {
-    define('SA_EMAIL_VIEW', SS_ksf_FA_CRM_Email | 1);
-    define('SA_EMAIL_MANAGE', SS_ksf_FA_CRM_Email | 2);
-    define('SA_EMAIL_ADMIN', SS_ksf_FA_CRM_Email | 3);
+if (!defined('SA_CRM_EMAIL_VIEW')) {
+    define('SA_CRM_EMAIL_VIEW', SS_ksf_FA_CRM_Email | 1);
+    define('SA_CRM_EMAIL_MANAGE', SS_ksf_FA_CRM_Email | 2);
+    define('SA_CRM_EMAIL_ADMIN', SS_ksf_FA_CRM_Email | 3);
 }
 class hooks_ksf_FA_CRM_Email extends hooks {
     const RESPONDERS = array('RELATED_TO_FIELDS', 'EMAIL_RESOLVE', 'EMAIL_FIELDS', 'EMAIL_LIST');
@@ -21,9 +21,9 @@ class hooks_ksf_FA_CRM_Email extends hooks {
     function install_options($app) { }
     function install_access() {
         $security_sections[SS_ksf_FA_CRM_Email] = _("Email");
-        $security_areas['SA_EMAIL_VIEW'] = array(SA_EMAIL_VIEW, _("View email accounts"));
-        $security_areas['SA_EMAIL_MANAGE'] = array(SA_EMAIL_MANAGE, _("Manage email accounts"));
-        $security_areas['SA_EMAIL_ADMIN'] = array(SA_EMAIL_ADMIN, _("Administer email"));
+        $security_areas['SA_CRM_EMAIL_VIEW'] = array(SA_CRM_EMAIL_VIEW, _("View email accounts"));
+        $security_areas['SA_CRM_EMAIL_MANAGE'] = array(SA_CRM_EMAIL_MANAGE, _("Manage email accounts"));
+        $security_areas['SA_CRM_EMAIL_ADMIN'] = array(SA_CRM_EMAIL_ADMIN, _("Administer email"));
         return array($security_areas, $security_sections);
     }
     function activate_extension($company, $check_only = true) {
@@ -40,9 +40,9 @@ class hooks_ksf_FA_CRM_Email extends hooks {
     public function getModuleConstants(&$data, $opts = null) {
         $data['constants'] = array(
             'SS_ksf_FA_CRM_Email' => SS_ksf_FA_CRM_Email,
-            'SA_EMAIL_VIEW' => SA_EMAIL_VIEW,
-            'SA_EMAIL_MANAGE' => SA_EMAIL_MANAGE,
-            'SA_EMAIL_ADMIN' => SA_EMAIL_ADMIN,
+            'SA_CRM_EMAIL_VIEW' => SA_CRM_EMAIL_VIEW,
+            'SA_CRM_EMAIL_MANAGE' => SA_CRM_EMAIL_MANAGE,
+            'SA_CRM_EMAIL_ADMIN' => SA_CRM_EMAIL_ADMIN,
         );
         return true;
     }
